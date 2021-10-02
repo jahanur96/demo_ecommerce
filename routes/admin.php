@@ -13,4 +13,5 @@ use Illuminate\Support\Facades\Route;
 Auth::routes();
 
 Route::get('/admin-login', [App\Http\Controllers\Auth\LoginController::class, 'adminLogin'])->name('admin.login');
+Route::get('/admin-logout', [AdminController::class, 'adminLogout'])->name('admin.logout');
 Route::get('/admin/home', [AdminController::class, 'admin'])->name('admin.home')->middleware('is_admin');
