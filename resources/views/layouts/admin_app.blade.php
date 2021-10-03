@@ -97,6 +97,8 @@
 <!-- AdminLTE for demo purposes -->
 <script src="{{ asset('public/backend') }}/dist/js/demo.js"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+@stack('script')
+
 <script src="{{ asset('public/backend') }}/dist/js/pages/dashboard.js"></script>
 <script src="{{ asset('public/backend/plugins/toastr/toastr.min.js') }}"></script>
 <script src="{{ asset('public/backend/plugins/sweetalert/sweetalert.min.js') }}"></script>
@@ -136,23 +138,26 @@
      });
  </script>
 <script>
-  $(document).on("click","#logout",function(e){
+  $(document).on("click","#delete",function(e){
       e.preventDefault()
       var link = $(this).attr("href");
-      Swal({
-          title: "Are you Want to Delete?",
-          text: "Once Delete, This will be Permanently Delete",
-          icon: "warning",
-          buttons: true,
-          dangerMode:true,
-          })
-      .then((willDelete)=>{
-          if(willDelete){
-              href = window.location.href = link;
-          }
-          else{
-              swal("Safe Data");
-          }
+      swal({
+      title: "Are you sure?",
+      text: "Once deleted, you will not be able to recover this imaginary file!",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+      })
+      .then((willDelete) => {
+      if (willDelete) {
+          window.location.href = link;
+          swal("Ok! Your  file has been deleted!", {
+          icon: "success",
+          
+          });
+      } else {
+          swal("Your file is safe!");
+      }
       });
   });
 </script>

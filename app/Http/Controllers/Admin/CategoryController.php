@@ -37,8 +37,48 @@ class CategoryController extends Controller
             );
         }
         return redirect()->back()->with($notification);
-        // dd($category);
-        
-    
     }
+
+        // category_edit
+    public function category_edit($id)
+    {
+        $data = Category::find($id);
+        return response()->json($data);
+    }
+    // category_update
+    public function category_update(Request $request)
+    {
+        $id = $request->id;
+        $data = Category::find($id);
+        $data->category_name = $request->category_name;
+        $data->category_slug = Str::slug($request->category_name, '-');
+        $data->update();
+
+        $notification = array(
+            'message' => 'Category Updated successfully!',
+            'alert-type' => 'success'
+        );
+        return redirect()->back()->with($notification);
+
+    }
+
+
+
+     // Category delete
+     public function category_delete($id)
+     {
+        $category = Category::find($id);
+        $delete = $category->delete();
+        if($delete){
+            $notification = array(
+                'message' => 'Category Deleted successfully!',
+                'alert-type' => 'success'
+            );
+        }
+        return redirect()->back()->with($notification);
+           
+         
+
+     }
+     
 }

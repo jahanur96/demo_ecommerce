@@ -20,7 +20,10 @@ Route::group(['prefix'=>'admin','middleware'=>'is_admin'],function () {
     // category
     Route::group(['prefix'=>'category'],function () {
         Route::get('/index', [CategoryController::class,'category_index'])->name('category.index');
+        Route::get('/edit/{id}', [CategoryController::class,'category_edit']);
+        Route::get('/delete/{id}', [CategoryController::class,'category_delete'])->name('category.delete');
         Route::post('/post', [CategoryController::class,'category_add'])->name('category.add');
+        Route::post('/update', [CategoryController::class,'category_update'])->name('category.update');
         
     });
 });

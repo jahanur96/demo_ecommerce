@@ -35,7 +35,7 @@
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
-                            <table id="example1" class="table table-bordered table-striped">
+                            <table id="example1" class="table table-bordered table-striped table-sm">
                                 <thead>
                                     <tr class="text-center">
                                         <th>Sl</th>
@@ -49,8 +49,8 @@
                                         <td>{{ $key+1 }}</td>
                                         <td>{{ $row->category_name }}</td>
                                         <td class="text-center">
-                                            <a href="" class="btn btn-primary" data-toggle="tooltip" data-placement="left" title="edit"><i class="fas fa-edit"></i></a>
-                                            <a href="" class="btn btn-warning" data-toggle="tooltip" data-placement="top" title="delete"><i class="far fa-trash-alt"></i></a>
+                                            <button class="btn btn-primary btn-sm edit" data-id="{{ $row->id }}" data-toggle="modal" data-target="#editCategory"><i class="fas fa-edit" data-toggle="tooltip" data-placement="left" title="edit"></i></button>
+                                            <a href="{{ route('category.delete',[$row->id]) }}" id="delete" class="btn btn-warning btn-sm"><i class="far fa-trash-alt" data-toggle="tooltip" data-placement="top" title="delete"></i></a>
                                         </td>
                                     </tr>
                                     @endforeach
@@ -82,5 +82,18 @@
 
 <!-- add Category modal -->
 @include('admin.category.category.category_add')
+@include('admin.category.category.category_edit')
+
+@push('script')
+    <script>
+        $('body').on('click','.edit',function(){
+            let cat_id = $(this).data('id')
+            $.get("edit/"+cat_id,function(data){
+                $('#e_categoryName').val(data.category_name)
+                $('#e_cat_id').val(data.id)
+            });
+        });
+    </script>
+@endpush
 
 @endsection
