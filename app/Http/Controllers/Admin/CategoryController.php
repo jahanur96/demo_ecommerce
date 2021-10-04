@@ -9,7 +9,10 @@ use App\Http\Controllers\Controller;
 
 class CategoryController extends Controller
 {
-    
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
 
     public function category_index()
     {
@@ -19,7 +22,6 @@ class CategoryController extends Controller
     
     public function category_add(Request $request)
     {
-      
         $validated = $request->validate([
             'category_name' => 'required|unique:categories|max:255',
         ]);
@@ -43,6 +45,7 @@ class CategoryController extends Controller
     public function category_edit($id)
     {
         $data = Category::find($id);
+        
         return response()->json($data);
     }
     // category_update
@@ -82,3 +85,4 @@ class CategoryController extends Controller
      }
      
 }
+
