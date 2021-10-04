@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>AdminLTE 3 | Dashboard</title>
+  <title>{{ config('app.name'); }} | {{ $title??'' }}</title>
   <!-- jQuery -->
   <script src="{{ asset('public/backend') }}/plugins/jquery/jquery.min.js"></script>
   <!-- Google Font: Source Sans Pro -->

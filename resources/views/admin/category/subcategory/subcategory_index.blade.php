@@ -83,57 +83,37 @@
 
 
 <!-- Modal Subcategory -->
-<div class="modal fade" id="AddCategory" tabindex="-1" role="dialog" aria-labelledby="AddCategoryLabel"
+@include('admin.category.subcategory.subcategory_add')
+
+
+<!-- Modal -->
+{{-- subcategory edit --}}
+<div class="modal fade" id="editCategory" tabindex="-1" role="dialog" aria-labelledby="editCategoryLabel"
     aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="AddCategoryLabel">SubCategory Insert</h5>
+                <h5 class="modal-title" id="editCategoryLabel">Sub Category Edit</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form method="POST" action="{{ route('subcategory.add') }}">
-                @csrf
-                <div class="modal-body">
-                    <div class="form-group">
-                        <label for="categoryName">Category Name</label>
-                        <select name="category_id" class="form-control" required>
-                            <option value="">Select One</option>
-                            @foreach ($categories as $cat)
-                                <option value="{{ $cat->id }}">{{ $cat->category_name }}</option> 
-                            @endforeach
-                            
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="subcategoryName">Sub Category Name</label>
-                        <input name="subcategory_name" type="text" class="form-control" id="subcategoryName" aria-describedby="mainCategory"
-                            placeholder="Sub Category Name">
-                        <small id="mainCategory" class="form-text text-muted">Enter your Sub Category</small>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Save</button>
-                </div>
-            </form>
+            <div id="subcat_edit_form">
+
+            </div>
         </div>
     </div>
 </div>
 
-@include('admin.category.subcategory.subcategory_edit')
+@endsection
 
 @push('script')
     <script>
         $('body').on('click','.edit',function(){
-            let cat_id = $(this).data('id')
-            $.get("edit/"+cat_id,function(data){
-                $('#e_categoryName').val(data.category_name)
-                $('#e_cat_id').val(data.id)
+            let subcat_id = $(this).data('id')
+            $.get("edit/"+subcat_id,function(data){
+                $('#subcat_edit_form').html(data);
             });
         });
     </script>
 @endpush
-
-@endsection
