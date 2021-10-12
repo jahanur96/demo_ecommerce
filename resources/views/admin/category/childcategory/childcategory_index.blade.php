@@ -31,7 +31,7 @@
                     <div class="card">
                         <div class="card-header">
                             <h3 class="card-title">DataTable with default features</h3>
-                            <div class="float-right"><button class="btn btn-primary" data-toggle="modal" data-target="#AddCategory">+ Add Category</button></div>
+                            <div class="float-right"><button class="btn btn-primary" data-toggle="modal" data-target="#AddCategory">+ Add Child Category</button></div>
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
@@ -47,7 +47,6 @@
                                 </thead>
                                 <tbody>
                                     <div id="modal_body">
-
                                     </div>
                                 </tbody>
                               
@@ -68,8 +67,25 @@
 <!-- /.content-wrapper -->
 
 
-<!-- add Category modal -->
+<!-- add child category modal -->
+@include('admin.category.childcategory.child_category_add')
 
+<div class="modal fade" id="editCategory" tabindex="-1" role="dialog" aria-labelledby="editCategoryLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editCategoryLabel">Child Category Edit</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div id="edit_modal">
+
+            </div>
+        </div>
+    </div>
+</div>
 
 @push('script')
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-ajaxy/1.6.1/scripts/jquery.ajaxy.js" integrity="sha512-4WpSQe8XU6Djt8IPJMGD9Xx9KuYsVCEeitZfMhPi8xdYlVA5hzRitm0Nt1g2AZFS136s29Nq4E4NVvouVAVrBw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -90,6 +106,14 @@
             });
         });
         
+    </script>
+    <script>
+        $('body').on('click','.edit',function(){
+            let childcat_id = $(this).data('id')
+            $.get("edit/"+childcat_id,function(data){
+                $('#edit_modal').html(data);
+            });
+        });
     </script>
 @endpush
 

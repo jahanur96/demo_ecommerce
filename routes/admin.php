@@ -43,7 +43,7 @@ Route::group(['prefix'=>'admin','middleware'=>'is_admin'],function () {
         Route::get('/edit/{id}', [ChildCategoryController::class,'childcategory_edit']);
         Route::get('/delete/{id}', [ChildCategoryController::class,'childcategory_delete'])->name('childcategory.delete');
         Route::post('/post', [ChildCategoryController::class,'childcategory_add'])->name('childcategory.add');
-        Route::post('/update', [ChildCategoryController::class,'childcategory_update'])->name('childcategory.update');
+        Route::post('/update/{id}', [ChildCategoryController::class,'childcategory_update'])->name('childcategory.update');
         
     });
 });
