@@ -26,13 +26,14 @@ class ChildCategoryController extends Controller
             ->get();
             
             return DataTables::of($data)
+                ->addIndexColumn()
                 ->addColumn('action', function($row){
                     $actionbtn = '<button class="btn btn-primary btn-sm edit" data-id="{{ $row->id }}" data-toggle="modal" data-target="#editCategory"><i class="fas fa-edit" data-toggle="tooltip" data-placement="left" title="edit"></i></button>
                     <a href="#" id="delete" class="btn btn-warning btn-sm"><i class="far fa-trash-alt" data-toggle="tooltip" data-placement="top" title="delete"></i></a>';
                     return $actionbtn;
                 
                 })
-                ->rowColumns('action')
+                ->rawColumns(['action'])
                 ->make(true);
 
 

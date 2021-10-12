@@ -61,6 +61,7 @@ class LoginController extends Controller
     }
 
     public function adminLogin(){
-        return view('auth.admin_login');
+        $title = 'Admin login';
+        return view('auth.admin_login',compact('title'));
     }
 }
