@@ -26,6 +26,8 @@
   <link rel="stylesheet" href="{{ asset('public/backend') }}/dist/css/adminlte.min.css">
   <!-- overlayScrollbars -->
   <link rel="stylesheet" href="{{ asset('public/backend') }}/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+
+  @stack('css')
   <!-- Daterange picker -->
   <link rel="stylesheet" href="{{ asset('public/backend') }}/plugins/daterangepicker/daterangepicker.css">
   <link rel="stylesheet" href="{{ asset('public/backend/plugins/toastr/toastr.min.css') }}">
@@ -183,7 +185,9 @@ switch(type){
 }
 
 </script>
+
 @endif
+
 </body>
 
 <!-- Mirrored from adminlte.io/themes/v3/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 01 Oct 2021 12:23:20 GMT -->

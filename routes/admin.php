@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\SubCategoryController;
 use App\Http\Controllers\Admin\ChildCategoryController;
@@ -44,6 +45,16 @@ Route::group(['prefix'=>'admin','middleware'=>'is_admin'],function () {
         Route::get('/delete/{id}', [ChildCategoryController::class,'childcategory_delete'])->name('childcategory.delete');
         Route::post('/post', [ChildCategoryController::class,'childcategory_add'])->name('childcategory.add');
         Route::post('/update/{id}', [ChildCategoryController::class,'childcategory_update'])->name('childcategory.update');
+        
+    });
+    
+    // Brand
+    Route::group(['prefix'=>'brand'],function () {
+        Route::get('/index', [BrandController::class,'brand_index'])->name('brand.index');
+        Route::get('/edit/{id}', [BrandController::class,'brand_edit']);
+        Route::get('/delete/{id}', [BrandController::class,'brand_delete'])->name('brand.delete');
+        Route::post('/post', [BrandController::class,'brand_add'])->name('brand.add');
+        Route::post('/update/{id}', [BrandController::class,'brand_update'])->name('brand.update');
         
     });
 });

@@ -52,6 +52,10 @@ class CategoryController extends Controller
     // category_update
     public function category_update(Request $request)
     {
+        $validated = $request->validate([
+            'category_name' => 'required|unique:categories,category_name,'.$request->id.',id',
+        ]);
+
         $id = $request->id;
         $data = Category::find($id);
         $data->category_name = $request->category_name;

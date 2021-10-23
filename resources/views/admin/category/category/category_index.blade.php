@@ -94,6 +94,11 @@
             });
         });
     </script>
+    <script type="text/javascript">
+        @if (count($errors) > 0)
+            $('#AddCategory').modal('show');
+        @endif
+    </script>
 @endpush
 
 @endsection

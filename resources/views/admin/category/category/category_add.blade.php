@@ -1,5 +1,5 @@
 <!-- Modal -->
-<div class="modal fade" id="AddCategory" tabindex="-1" role="dialog" aria-labelledby="AddCategoryLabel"
+<div id="AddCategory" class="modal fade"  tabindex="-1" role="dialog" aria-labelledby="AddCategoryLabel"
     aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -14,9 +14,11 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <label for="categoryName">Category Name</label>
-                        <input name="category_name" type="text" class="form-control" id="categoryName" aria-describedby="mainCategory"
-                            placeholder="Category Name">
-                        <small id="mainCategory" class="form-text text-muted">Enter your main Category</small>
+                        <input name="category_name"  type="text" class="form-control @error('category_name') is-invalid @enderror" id="categoryName" aria-describedby="mainCategory"
+                            placeholder="Category Name" value="{{ old('category_name') }}">
+                            @error('category_name')
+                                <small class="text-danger">{{ $message }}</small>
+                            @enderror
                     </div>
                 </div>
                 <div class="modal-footer">
