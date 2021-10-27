@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers\Admin;
 use DB;
+use Image;
 use DataTables;
 use App\Models\Brand;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Storage;
-use Image;
 use Illuminate\Support\Facades\File;
+use Validator;
 
 class BrandController extends Controller
 {
@@ -73,6 +73,57 @@ class BrandController extends Controller
             return redirect()->back()->with($notification);
         }
 
+    }
+
+    public function brand_edit($id)
+    {
+
+        $data = Brand::findOrFail($id);
+        return view('admin.brand.brand_edit',compact('data'));
+    }
+
+    public function brand_update(Request $request,$id)
+    {
+        $validator_edit = Validator::make($request->all(), [
+            'brand_name' => 'required|unique:brands,brand_name,'.$id,
+            // "form_field_name" => 'required|unique:db_table_name,db_table_column_name,'.$id
+            'brand_logo' => 'nullable|image|mimes:jpg,jpeg,png,gif,svg|max:4096'
+        ]);
+       
+        if ($validator_edit->fails()) {
+            return redirect()->back();
+        }
+
+        $brand = Brand::findOrFail($id);
+        $slug = Str::slug($request->brand_name, '-');
+        $brand->brand_name = $request->brand_name;
+        $brand->brand_slug = $slug;
+        if($request->file('brand_logo')){
+            $public_path = str_replace('\\','/',public_path());
+            unlink($public_path.'/uploads/brand/'.$brand->brand_logo);
+
+            $photo = $request->brand_logo;
+            $photo_name = $slug.'.'.$photo->getClientOriginalExtension();
+            // dd($request->file('brand_logo'));
+            // $photo->move('public/uploads/brand/',$photo_name); // normal upload
+            Image::make($photo)->resize(240,120)->save('public/uploads/brand/'.$photo_name);  //image intervention
+            $brand->brand_logo = $photo_name;
+       
+        }else{
+            $brand->brand_logo = $request->hidden_file;
+        }
+       
+        $brand_insert = $brand->update();
+        if($brand_insert){
+            $notification = array(
+                'message' => 'Brand updated successfully!',
+                'alert-type' => 'success'
+            );
+            return redirect()->back()->with($notification);
+        }
+
+        
+        
     }
 
     public function brand_delete($id)

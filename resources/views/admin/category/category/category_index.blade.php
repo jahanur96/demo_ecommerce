@@ -31,7 +31,7 @@
                     <div class="card">
                         <div class="card-header">
                             <h3 class="card-title">DataTable with default features</h3>
-                            <div class="float-right"><button class="btn btn-primary" data-toggle="modal" data-target="#AddCategory">+ Add Category</button></div>
+                            <div class="float-right"><button class="btn btn-primary" data-toggle="modal" data-target="#AddCategory" id="addCategoryBtn">+ Add Category</button></div>
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
@@ -85,8 +85,18 @@
 @include('admin.category.category.category_edit')
 
 @push('script')
+
     <script>
+         $('body').on('click','#addCategoryBtn',function(){
+            $('#AddCategory').modal({ backdrop: 'static', keyboard: false })
+            
+        });
+        
         $('body').on('click','.edit',function(){
+            $('#editCategory').modal({
+                backdrop: 'static',
+                keyboard: false
+            })
             let cat_id = $(this).data('id')
             $.get("edit/"+cat_id,function(data){
                 $('#e_categoryName').val(data.category_name)
@@ -96,7 +106,7 @@
     </script>
     <script type="text/javascript">
         @if (count($errors) > 0)
-            $('#AddCategory').modal('show');
+            $('#editCategory').modal('show');
         @endif
     </script>
 @endpush

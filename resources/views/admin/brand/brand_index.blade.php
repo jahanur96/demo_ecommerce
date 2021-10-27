@@ -73,12 +73,12 @@
 <!-- add child category modal -->
 @include('admin.brand.brand_add');
 
-<div class="modal fade" id="editCategory" tabindex="-1" role="dialog" aria-labelledby="editCategoryLabel"
+<div class="modal fade" id="editBrand" tabindex="-1" role="dialog" aria-labelledby="editCategoryLabel"
     aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="editCategoryLabel">Child Category Edit</h5>
+                <h5 class="modal-title" id="editCategoryLabel">Brand Edit</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -91,7 +91,7 @@
 </div>
 
 @push('script')
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-ajaxy/1.6.1/scripts/jquery.ajaxy.js" integrity="sha512-4WpSQe8XU6Djt8IPJMGD9Xx9KuYsVCEeitZfMhPi8xdYlVA5hzRitm0Nt1g2AZFS136s29Nq4E4NVvouVAVrBw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+{{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-ajaxy/1.6.1/scripts/jquery.ajaxy.js" integrity="sha512-4WpSQe8XU6Djt8IPJMGD9Xx9KuYsVCEeitZfMhPi8xdYlVA5hzRitm0Nt1g2AZFS136s29Nq4E4NVvouVAVrBw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> --}}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/js/dropify.js"></script>
 <script>
     $('.dropify').dropify({
@@ -127,11 +127,16 @@
     </script>
     <script>
         $('body').on('click','.edit',function(){
-            let childcat_id = $(this).data('id')
-            $.get("edit/"+childcat_id,function(data){
+            $('#editBrand').modal({
+                backdrop: 'static',
+                keyboard: false
+            })
+            let brand_id = $(this).data('id')
+            $.get("edit/"+brand_id,function(data){
                 $('#edit_modal').html(data);
             });
         });
+        
     </script>
 @endpush
 
