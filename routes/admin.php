@@ -59,4 +59,11 @@ Route::group(['prefix'=>'admin','middleware'=>'is_admin'],function () {
         Route::post('/update/{id}', [BrandController::class,'brand_update'])->name('brand.update');
         
     });
+    //setting Routes 
+		//seo setting
+		Route::group(['prefix'=>'seo'], function(){
+			Route::get('/index', [SettingsController::class,'seo_index'])->name('seo.setting');
+            Route::post('/update/{id}', [SettingsController::class,'seoUpdate'])->name('seo.setting.update');
+			
+	    });
 });

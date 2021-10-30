@@ -498,7 +498,7 @@
             </li>
           </ul>
         </li>
-        <li class="nav-header">MISCELLANEOUS</li>
+        <li class="nav-header">Settings</li>
         <li class="nav-item">
           <a href="iframe.html" class="nav-link">
             <i class="nav-icon fas fa-ellipsis-h"></i>
@@ -506,9 +506,9 @@
           </a>
         </li>
         <li class="nav-item">
-          <a href="https://adminlte.io/docs/3.1/" class="nav-link">
+          <a href="{{ route('seo.setting') }}" class="nav-link">
             <i class="nav-icon fas fa-file"></i>
-            <p>Documentation</p>
+            <p>Seo Settings</p>
           </a>
         </li>
         <li class="nav-header">Profile</li>

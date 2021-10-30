@@ -23,13 +23,14 @@ class AdminController extends Controller
 
     public function admin_changePassword()
     {
-        return view('admin.authAdmin.change-password');
+        $title = "Admin Password Change";
+        return view('admin.authAdmin.change-password',compact('title'));
     }
 
 
 
       //password Update
-      public function PasswordUpdate(Request $request)
+      public function admin_updatePassword(Request $request)
       {
           $validated = $request->validate([
              'old_password' => 'required',
@@ -46,11 +47,18 @@ class AdminController extends Controller
                  $user->password=Hash::make($request->password); //current user password hasing
                  $user->save();  //finally save the password
                  Auth::logout();  //logout the admin user anmd redirect admin login panel not user login panel
-                 $notification=array('messege' => 'Your Password Changed!', 'alert-type' => 'success');
+                 $notification = array(
+                    'message' => 'Your Password has been Changed successfully !',
+                    'alert-type' => 'success'
+                );
                  return redirect()->route('admin.login')->with($notification);
           }else{
-              $notification=array('messege' => 'Old Password Not Matched!', 'alert-type' => 'error');
-              return redirect()->back()->with($notification);
+            
+            $notification = array(
+                'message' => 'Old Password Not Matched!',
+                'alert-type' => 'error'
+            );
+            return redirect()->back()->with($notification);
           }
       }
   
