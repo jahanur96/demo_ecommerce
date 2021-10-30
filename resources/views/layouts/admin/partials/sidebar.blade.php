@@ -506,6 +506,12 @@
           </a>
         </li>
         <li class="nav-item">
+          <a href="{{ route('smtp.setting') }}" class="nav-link">
+            <i class="nav-icon fas fa-ellipsis-h"></i>
+            <p>Smtp Mail Configaration</p>
+          </a>
+        </li>
+        <li class="nav-item">
           <a href="{{ route('seo.setting') }}" class="nav-link">
             <i class="nav-icon fas fa-file"></i>
             <p>Seo Settings</p>

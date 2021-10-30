@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\SubCategoryController;
 use App\Http\Controllers\Admin\ChildCategoryController;
+use App\Http\Controllers\Admin\SettingsController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -66,4 +67,12 @@ Route::group(['prefix'=>'admin','middleware'=>'is_admin'],function () {
             Route::post('/update/{id}', [SettingsController::class,'seoUpdate'])->name('seo.setting.update');
 			
 	    });
+		//smtp setting
+		Route::group(['prefix'=>'smtp'], function(){
+			Route::get('/index', [SettingsController::class,'smtp_index'])->name('smtp.setting');
+            Route::post('/update/{id}', [SettingsController::class,'smtpUpdate'])->name('smtp.setting.update');
+			
+	    });
+
+        
 });
