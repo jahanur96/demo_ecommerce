@@ -19,6 +19,8 @@ Auth::routes();
 Route::get('/admin-login', [App\Http\Controllers\Auth\LoginController::class, 'adminLogin'])->name('admin.login');
 Route::get('/admin-logout', [AdminController::class, 'adminLogout'])->name('admin.logout');
 Route::get('/admin/home', [AdminController::class, 'admin'])->name('admin.home')->middleware('is_admin');
+Route::get('/admin/change-password', [AdminController::class, 'admin_changePassword'])->name('admin.password.change')->middleware('is_admin');
+Route::post('/admin/update-password', [AdminController::class, 'admin_updatePassword'])->name('admin.password.update')->middleware('is_admin');
 Route::group(['prefix'=>'admin','middleware'=>'is_admin'],function () {
     // category
     Route::group(['prefix'=>'category'],function () {
