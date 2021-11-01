@@ -118,6 +118,16 @@
  <script src="{{ asset('public/backend') }}/plugins/datatables-buttons/js/buttons.print.min.js"></script>
  <script src="{{ asset('public/backend') }}/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
  <script>
+  /*Summernote editor*/
+  if($(".summernoteEditor").length){
+  $('.textarea').summernote({
+    height: 200,
+    tabsize: 2
+  });
+  }
+  </script>
+
+ <script>
  $(document).ready(function(){
      $('[data-toggle="tooltip"]').tooltip();   
      });

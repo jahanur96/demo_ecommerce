@@ -475,30 +475,31 @@
             </li>
           </ul>
         </li>
+        
+        <li class="nav-header">Settings</li>
         <li class="nav-item">
           <a href="#" class="nav-link">
-            <i class="nav-icon fas fa-search"></i>
+            <i class="nav-icon fas fa-book"></i>
             <p>
-              Search
+              Page Settings
               <i class="fas fa-angle-left right"></i>
             </p>
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item">
-              <a href="pages/search/simple.html" class="nav-link">
+              <a href="{{route('create.page')}}" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
-                <p>Simple Search</p>
+                <p>Add Page</p>
               </a>
             </li>
             <li class="nav-item">
-              <a href="pages/search/enhanced.html" class="nav-link">
+              <a href="{{ route('page.index') }}" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
-                <p>Enhanced</p>
+                <p>All Page</p>
               </a>
             </li>
           </ul>
         </li>
-        <li class="nav-header">Settings</li>
         <li class="nav-item">
           <a href="iframe.html" class="nav-link">
             <i class="nav-icon fas fa-ellipsis-h"></i>
@@ -507,7 +508,7 @@
         </li>
         <li class="nav-item">
           <a href="{{ route('smtp.setting') }}" class="nav-link">
-            <i class="nav-icon fas fa-ellipsis-h"></i>
+            <i class="nav-icon far fa-envelope"></i>
             <p>Smtp Mail Configaration</p>
           </a>
         </li>

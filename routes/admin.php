@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\SubCategoryController;
 use App\Http\Controllers\Admin\ChildCategoryController;
+use App\Http\Controllers\Admin\PageController;
 use App\Http\Controllers\Admin\SettingsController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -73,6 +74,18 @@ Route::group(['prefix'=>'admin','middleware'=>'is_admin'],function () {
             Route::post('/update/{id}', [SettingsController::class,'smtpUpdate'])->name('smtp.setting.update');
 			
 	    });
+       
 
-        
+        //Page setting
+		Route::group(['prefix'=>'page'], function(){
+			Route::get('/', [PageController::class,'index'])->name('page.index');
+			Route::get('/create', [PageController::class,'create'])->name('create.page');
+			Route::post('/store', [PageController::class,'store'])->name('page.store');
+			Route::get('/delete/{id}', [PageController::class,'destroy'])->name('page.delete');
+			Route::get('/edit/{id}', [PageController::class,'edit'])->name('page.edit');
+			Route::post('/update/{id}', [PageController::class,'update'])->name('page.update');
+	    });
+
+
+
 });
